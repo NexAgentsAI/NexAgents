@@ -63,8 +63,8 @@ async def main() -> None:
         topic_id=DefaultTopicId("agents.Output", "HelloAgents/python"),
         sender=AgentId("HelloAgents", "python"),
     )
-    await runtime.stop_when_signal()
-    # await runtime.stop_when_idle()
+
+    await runtime.stop_when_shutdown()
 
 
 if __name__ == "__main__":

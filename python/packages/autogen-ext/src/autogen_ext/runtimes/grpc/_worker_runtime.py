@@ -3,6 +3,7 @@ import inspect
 import json
 import logging
 import signal
+import sys
 import uuid
 import warnings
 from asyncio import Future, Task
@@ -299,8 +300,22 @@ class GrpcWorkerAgentRuntime(AgentRuntime):
             except asyncio.CancelledError:
                 pass
 
+    async def stop_when_shutdown(self) -> None:
+        """Stop the runtime when Ctrl+C or SIGTERM is received."""
+        try:
+            await self._read_task
+        except KeyboardInterrupt:
+            logger.info("Received exit signal, shutting down gracefully...")
+            await self.stop()
+
     async def stop_when_signal(self, signals: Sequence[signal.Signals] = (signal.SIGTERM, signal.SIGINT)) -> None:
         """Stop the runtime when a signal is received."""
+
+        # check if it's running on linux or windows
+        if sys.platform == "win32":
+            raise NotImplementedError(
+                "Signal handling is not supported on Windows. Please use stop_when_shutdown instead."
+            )
         loop = asyncio.get_running_loop()
         shutdown_event = asyncio.Event()
 
