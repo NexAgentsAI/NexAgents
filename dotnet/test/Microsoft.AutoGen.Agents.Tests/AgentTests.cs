@@ -6,14 +6,14 @@ using FluentAssertions;
 using Google.Protobuf.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AutoGen.Contracts;
+using Microsoft.AutoGen.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
-using static Microsoft.AutoGen.Core.Tests.AgentTests;
-
-namespace Microsoft.AutoGen.Core.Tests;
+using static Microsoft.AutoGen.Agents.Tests.AgentTests;
+namespace Microsoft.AutoGen.Agents.Tests;
 
 [Collection(ClusterFixtureCollection.Name)]
 public class AgentTests(InMemoryAgentRuntimeFixture fixture)

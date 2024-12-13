@@ -2,7 +2,9 @@
 // AgentExtensions.cs
 
 using System.Diagnostics;
+using Google.Protobuf;
 using Google.Protobuf.Collections;
+using Microsoft.AutoGen.Contracts;
 using static Microsoft.AutoGen.Contracts.CloudEvent.Types;
 
 namespace Microsoft.AutoGen.Core;
@@ -118,5 +120,10 @@ public static class AgentExtensions
         {
             activity?.Stop();
         }
+    }
+
+    public static async ValueTask PublishEventAsync(this Agent agent, string topic, IMessage evt, CancellationToken cancellationToken = default)
+    {
+        await agent.PublishEventAsync(evt.ToCloudEvent(topic), cancellationToken).ConfigureAwait(false);
     }
 }
