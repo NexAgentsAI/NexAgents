@@ -7,7 +7,7 @@ using Microsoft.AutoGen.Contracts;
 
 namespace Microsoft.AutoGen.Agents;
 
-internal sealed class GrpcWorkerConnection : IAsyncDisposable, IConnection
+public sealed class GrpcWorkerConnection : IAsyncDisposable, IConnection
 {
     private static long s_nextConnectionId;
     private readonly Task _readTask;
