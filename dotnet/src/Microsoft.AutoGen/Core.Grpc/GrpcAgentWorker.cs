@@ -32,13 +32,15 @@ public sealed class GrpcAgentWorker(
         FullMode = BoundedChannelFullMode.Wait
     });
     private readonly AgentRpc.AgentRpcClient _client = client;
-    private readonly IServiceProvider _serviceProvider = serviceProvider;
+    public readonly IServiceProvider ServiceProvider = serviceProvider;
     private readonly IEnumerable<Tuple<string, Type>> _configuredAgentTypes = configuredAgentTypes;
     private readonly ILogger<GrpcAgentWorker> _logger = logger;
     private readonly CancellationTokenSource _shutdownCts = CancellationTokenSource.CreateLinkedTokenSource(hostApplicationLifetime.ApplicationStopping);
     private AsyncDuplexStreamingCall<Message, Message>? _channel;
     private Task? _readTask;
     private Task? _writeTask;
+
+    IServiceProvider IAgentWorker.ServiceProvider => throw new NotImplementedException();
 
     public void Dispose()
     {
@@ -175,7 +177,7 @@ public sealed class GrpcAgentWorker(
         {
             if (_agentTypes.TryGetValue(agentId.Type, out var agentType))
             {
-                agent = (Agent)ActivatorUtilities.CreateInstance(_serviceProvider, agentType, this);
+                agent = (Agent)ActivatorUtilities.CreateInstance(ServiceProvider, agentType, this);
                 _agents.TryAdd((agentId.Type, agentId.Key), agent);
             }
             else
@@ -214,7 +216,7 @@ public sealed class GrpcAgentWorker(
             {
                 var subscriptionRequest = new Message
                 {
-                    AddSubscriptionRequest = new AddSubscriptionRequest
+                    SubscriptionRequest = new SubscriptionRequest
                     {
                         RequestId = Guid.NewGuid().ToString(),
                         Subscription = new Subscription
@@ -232,7 +234,7 @@ public sealed class GrpcAgentWorker(
                 {
                     subscriptionRequest = new Message
                     {
-                        AddSubscriptionRequest = new AddSubscriptionRequest
+                        SubscriptionRequest = new SubscriptionRequest
                         {
                             RequestId = Guid.NewGuid().ToString(),
                             Subscription = new Subscription
@@ -393,6 +395,25 @@ public sealed class GrpcAgentWorker(
         {
             throw new KeyNotFoundException($"Failed to read AgentState for {agentId}.");
         }
+    }
+
+    public ValueTask<List<Subscription>> GetSubscriptionsAsync(Type type)
+    {
+        var agentId = new AgentId { Type = type.Name };
+        var response = _client.GetSubscriptions(agentId);
+        return new ValueTask<List<Subscription>>([.. response.Subscriptions]);
+    }
+
+    public ValueTask<SubscriptionResponse> SubscribeAsync(SubscriptionRequest request, CancellationToken cancellationToken = default)
+    {
+        var response = _client.Subscribe(request, null, null, cancellationToken);
+        return new ValueTask<SubscriptionResponse>(response);
+    }
+
+    public ValueTask<SubscriptionResponse> UnsubscribeAsync(SubscriptionRequest request, CancellationToken cancellationToken = default)
+    {
+        var response = _client.Unsubscribe(request, null, null, cancellationToken);
+        return new ValueTask<SubscriptionResponse>(response);
     }
 }
 
