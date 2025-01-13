@@ -1,32 +1,30 @@
 <a name="readme-top"></a>
 
 <div align="center">
-<img src="https://microsoft.github.io/autogen/0.2/img/ag.svg" alt="AutoGen Logo" width="100">
+<img src="https://i.ibb.co/b5C4Ffp/Capture-d-e-cran-2025-01-13-a-23-35-15.png" alt="AutoGen Logo" width="100">
 
-[![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%40pyautogen)](https://twitter.com/pyautogen)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Company?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/105812540)
-[![Discord](https://img.shields.io/badge/discord-chat-green?logo=discord)](https://aka.ms/autogen-discord)
-[![Documentation](https://img.shields.io/badge/Documentation-AutoGen-blue?logo=read-the-docs)](https://microsoft.github.io/autogen/)
+[![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%40WebEvoAI)](https://x.com/WebEvoAI)
+[![Documentation](https://img.shields.io/badge/Documentation-WebEvoAI-blue?logo=read-the-docs)](https://microsoft.github.io/WebEvoAI/)
 
 </div>
 
-# AutoGen
+# WebEvoAI
 
-**AutoGen** is a framework for creating multi-agent AI applications that can act autonomously or work alongside humans.
+**WebEvoAI** is a framework for creating multi-agent AI applications that can act autonomously or work alongside humans.
 
 ## Installation
 
-AutoGen requires **Python 3.10 or later**.
+WebEvoAI requires **Python 3.10 or later**.
 
 ```bash
 # Install AgentChat and OpenAI client from Extensions
-pip install -U "autogen-agentchat" "autogen-ext[openai]"
+pip install -U "WebEvoAI-agentchat" "WebEvoAI-ext[openai]"
 ```
 
-The current stable version is v0.4. If you are upgrading from AutoGen v0.2, please refer to the [Migration Guide](https://microsoft.github.io/autogen/dev/user-guide/agentchat-user-guide/migration-guide.html) for detailed instructions on how to update your code and configurations.
+The current stable version is v0.4. If you are upgrading from WebEvoAI v0.2, please refer to the [Migration Guide](https://microsoft.github.io/WebEvoAI/dev/user-guide/agentchat-user-guide/migration-guide.html) for detailed instructions on how to update your code and configurations.
 
 ```bash
-# Install AutoGen Studio for no-code GUI
+# Install WebEvoAI Studio for no-code GUI
 pip install -U "autogenstudio"
 ```
 
@@ -54,7 +52,7 @@ Create a group chat team with an assistant agent, a web surfer agent, and a user
 for web browsing tasks. You need to install [playwright](https://playwright.dev/python/docs/library).
 
 ```python
-# pip install -U autogen-agentchat autogen-ext[openai,web-surfer]
+# pip install -U WebEvoAI-agentchat WebEvoAI-ext[openai,web-surfer]
 # playwright install
 import asyncio
 from autogen_agentchat.agents import AssistantAgent, UserProxyAgent
@@ -71,66 +69,66 @@ async def main() -> None:
     user_proxy = UserProxyAgent("user_proxy")
     termination = TextMentionTermination("exit") # Type 'exit' to end the conversation.
     team = RoundRobinGroupChat([web_surfer, assistant, user_proxy], termination_condition=termination)
-    await Console(team.run_stream(task="Find information about AutoGen and write a short summary."))
+    await Console(team.run_stream(task="Find information about WebEvoAI and write a short summary."))
 
 asyncio.run(main())
 ```
 
-### AutoGen Studio
+### WebEvoAI Studio
 
-Use AutoGen Studio to prototype and run multi-agent workflows without writing code.
+Use WebEvoAI Studio to prototype and run multi-agent workflows without writing code.
 
 ```bash
-# Run AutoGen Studio on http://localhost:8080
+# Run WebEvoAI Studio on http://localhost:8080
 autogenstudio ui --port 8080 --appdir ./my-app
 ```
 
-## Why Use AutoGen?
+## Why Use WebEvoAI?
 
 <div align="center">
-  <img src="autogen-landing.jpg" alt="AutoGen Landing" width="500">
+  <img src="WebEvoAI-landing.jpg" alt="WebEvoAI Landing" width="500">
 </div>
 
-The AutoGen ecosystem provides everything you need to create AI agents, especially multi-agent workflows -- framework, developer tools, and applications.
+The WebEvoAI ecosystem provides everything you need to create AI agents, especially multi-agent workflows -- framework, developer tools, and applications.
 
 The _framework_ uses a layered and extensible design. Layers have clearly divided responsibilities and build on top of layers below. This design enables you to use the framework at different levels of abstraction, from high-level APIs to low-level components.
 
-- [Core API](./python/packages/autogen-core/) implements message passing, event-driven agents, and local and distributed runtime for flexibility and power. It also support cross-language support for .NET and Python.
-- [AgentChat API](./python/packages/autogen-agentchat/) implements a simpler but opinionated API rapid for prototyping. This API is built on top of the Core API and is closest to what users of v0.2 are familiar with and supports familiar multi-agent patterns such as two-agent chat or group chats.
-- [Extensions API](./python/packages/autogen-ext/) enables first- and third-party extensions continuously expanding framework capabilities. It support specific implementation of LLM clients (e.g., OpenAI, AzureOpenAI), and capabilities such as code execution.
+- [Core API](./python/packages/WebEvoAI-core/) implements message passing, event-driven agents, and local and distributed runtime for flexibility and power. It also support cross-language support for .NET and Python.
+- [AgentChat API](./python/packages/WebEvoAI-agentchat/) implements a simpler but opinionated API rapid for prototyping. This API is built on top of the Core API and is closest to what users of v0.2 are familiar with and supports familiar multi-agent patterns such as two-agent chat or group chats.
+- [Extensions API](./python/packages/WebEvoAI-ext/) enables first- and third-party extensions continuously expanding framework capabilities. It support specific implementation of LLM clients (e.g., OpenAI, AzureOpenAI), and capabilities such as code execution.
 
 The ecosystem also supports two essential _developer tools_:
 
 <div align="center">
-  <img src="https://media.githubusercontent.com/media/microsoft/autogen/refs/heads/main/python/packages/autogen-studio/docs/ags_screen.png" alt="AutoGen Studio Screenshot" width="500">
+  <img src="https://media.githubusercontent.com/media/microsoft/WebEvoAI/refs/heads/main/python/packages/WebEvoAI-studio/docs/ags_screen.png" alt="WebEvoAI Studio Screenshot" width="500">
 </div>
 
-- [AutoGen Studio](./python/packages/autogen-studio/) provides a no-code GUI for building multi-agent applications.
-- [AutoGen Bench](./python/packages/agbench/) provides a benchmarking suite for evaluating agent performance.
+- [WebEvoAI Studio](./python/packages/WebEvoAI-studio/) provides a no-code GUI for building multi-agent applications.
+- [WebEvoAI Bench](./python/packages/agbench/) provides a benchmarking suite for evaluating agent performance.
 
-You can use the AutoGen framework and developer tools to create applications for your domain. For example, [Magentic-One](./python/packages/magentic-one-cli/) is a state-of-art multi-agent team built using AgentChat API and Extensions API that can handle variety of tasks that require web browsing, code execution, and file handling.
+You can use the WebEvoAI framework and developer tools to create applications for your domain. For example, [Magentic-One](./python/packages/magentic-one-cli/) is a state-of-art multi-agent team built using AgentChat API and Extensions API that can handle variety of tasks that require web browsing, code execution, and file handling.
 
-With AutoGen you get to join and contribute to a thriving ecosystem. We host weekly office hours and talks with maintainers and community. We also have a [Discord server](https://aka.ms/autogen-discord) for real-time chat, GitHub Discussions for Q&A, and a blog for tutorials and updates.
+With WebEvoAI you get to join and contribute to a thriving ecosystem. We host weekly office hours and talks with maintainers and community. We also have a [Discord server](https://aka.ms/WebEvoAI-discord) for real-time chat, GitHub Discussions for Q&A, and a blog for tutorials and updates.
 
 ## Where to go next?
 
 <div align="center">
 
-|               | [![Python](https://img.shields.io/badge/AutoGen-Python-blue?logo=python&logoColor=white)](./python)                                                                                                                                                                                                                                                                                                                | [![.NET](https://img.shields.io/badge/AutoGen-.NET-green?logo=.net&logoColor=white)](./dotnet) | [![Studio](https://img.shields.io/badge/AutoGen-Studio-purple?logo=visual-studio&logoColor=white)](./python/packages/autogen-studio)                     |
+|               | [![Python](https://img.shields.io/badge/WebEvoAI-Python-blue?logo=python&logoColor=white)](./python)                                                                                                                                                                                                                                                                                                                | [![.NET](https://img.shields.io/badge/WebEvoAI-.NET-green?logo=.net&logoColor=white)](./dotnet) | [![Studio](https://img.shields.io/badge/WebEvoAI-Studio-purple?logo=visual-studio&logoColor=white)](./python/packages/WebEvoAI-studio)                     |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Installation  | [![Installation](https://img.shields.io/badge/Install-blue)](https://microsoft.github.io/autogen/dev/user-guide/agentchat-user-guide/installation.html)                                                                                                                                                                                                                                                            | \*                                                                                             | [![Install](https://img.shields.io/badge/Install-purple)](https://microsoft.github.io/autogen/dev/user-guide/autogenstudio-user-guide/installation.html) |
-| Quickstart    | [![Quickstart](https://img.shields.io/badge/Quickstart-blue)](https://microsoft.github.io/autogen/dev/user-guide/agentchat-user-guide/quickstart.html#)                                                                                                                                                                                                                                                            | \*                                                                                             | [![Usage](https://img.shields.io/badge/Quickstart-blue)](https://microsoft.github.io/autogen/dev/user-guide/autogenstudio-user-guide/usage.html#)        |
-| Tutorial      | [![Tutorial](https://img.shields.io/badge/Tutorial-blue)](https://microsoft.github.io/autogen/dev/user-guide/agentchat-user-guide/tutorial/models.html)                                                                                                                                                                                                                                                            | \*                                                                                             | [![Usage](https://img.shields.io/badge/Quickstart-blue)](https://microsoft.github.io/autogen/dev/user-guide/autogenstudio-user-guide/usage.html#)        |
-| API Reference | [![API](https://img.shields.io/badge/Docs-blue)](https://microsoft.github.io/autogen/dev/reference/index.html#)                                                                                                                                                                                                                                                                                                    | \*                                                                                             | [![API](https://img.shields.io/badge/Docs-purple)](https://microsoft.github.io/autogen/dev/user-guide/autogenstudio-user-guide/usage.html)               |
-| Packages      | [![PyPi autogen-core](https://img.shields.io/badge/PyPi-autogen--core-blue?logo=pypi)](https://pypi.org/project/autogen-core/) <br> [![PyPi autogen-agentchat](https://img.shields.io/badge/PyPi-autogen--agentchat-blue?logo=pypi)](https://pypi.org/project/autogen-agentchat/) <br> [![PyPi autogen-ext](https://img.shields.io/badge/PyPi-autogen--ext-blue?logo=pypi)](https://pypi.org/project/autogen-ext/) | \*                                                                                             | [![PyPi autogenstudio](https://img.shields.io/badge/PyPi-autogenstudio-purple?logo=pypi)](https://pypi.org/project/autogenstudio/)                       |
+| Installation  | [![Installation](https://img.shields.io/badge/Install-blue)](https://microsoft.github.io/WebEvoAI/dev/user-guide/agentchat-user-guide/installation.html)                                                                                                                                                                                                                                                            | \*                                                                                             | [![Install](https://img.shields.io/badge/Install-purple)](https://microsoft.github.io/WebEvoAI/dev/user-guide/autogenstudio-user-guide/installation.html) |
+| Quickstart    | [![Quickstart](https://img.shields.io/badge/Quickstart-blue)](https://microsoft.github.io/WebEvoAI/dev/user-guide/agentchat-user-guide/quickstart.html#)                                                                                                                                                                                                                                                            | \*                                                                                             | [![Usage](https://img.shields.io/badge/Quickstart-blue)](https://microsoft.github.io/WebEvoAI/dev/user-guide/autogenstudio-user-guide/usage.html#)        |
+| Tutorial      | [![Tutorial](https://img.shields.io/badge/Tutorial-blue)](https://microsoft.github.io/WebEvoAI/dev/user-guide/agentchat-user-guide/tutorial/models.html)                                                                                                                                                                                                                                                            | \*                                                                                             | [![Usage](https://img.shields.io/badge/Quickstart-blue)](https://microsoft.github.io/WebEvoAI/dev/user-guide/autogenstudio-user-guide/usage.html#)        |
+| API Reference | [![API](https://img.shields.io/badge/Docs-blue)](https://microsoft.github.io/WebEvoAI/dev/reference/index.html#)                                                                                                                                                                                                                                                                                                    | \*                                                                                             | [![API](https://img.shields.io/badge/Docs-purple)](https://microsoft.github.io/WebEvoAI/dev/user-guide/autogenstudio-user-guide/usage.html)               |
+| Packages      | [![PyPi WebEvoAI-core](https://img.shields.io/badge/PyPi-WebEvoAI--core-blue?logo=pypi)](https://pypi.org/project/WebEvoAI-core/) <br> [![PyPi WebEvoAI-agentchat](https://img.shields.io/badge/PyPi-WebEvoAI--agentchat-blue?logo=pypi)](https://pypi.org/project/WebEvoAI-agentchat/) <br> [![PyPi WebEvoAI-ext](https://img.shields.io/badge/PyPi-WebEvoAI--ext-blue?logo=pypi)](https://pypi.org/project/WebEvoAI-ext/) | \*                                                                                             | [![PyPi autogenstudio](https://img.shields.io/badge/PyPi-autogenstudio-purple?logo=pypi)](https://pypi.org/project/autogenstudio/)                       |
 
 </div>
 
 \*_Releasing soon_
 
-Interested in contributing? See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on how to get started. We welcome contributions of all kinds, including bug fixes, new features, and documentation improvements. Join our community and help us make AutoGen better!
+Interested in contributing? See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on how to get started. We welcome contributions of all kinds, including bug fixes, new features, and documentation improvements. Join our community and help us make WebEvoAI better!
 
-Have questions? Check out our [Frequently Asked Questions (FAQ)](./FAQ.md) for answers to common queries. If you don't find what you're looking for, feel free to ask in our [GitHub Discussions](https://github.com/microsoft/autogen/discussions) or join our [Discord server](https://aka.ms/autogen-discord) for real-time support.
+Have questions? Check out our [Frequently Asked Questions (FAQ)](./FAQ.md) for answers to common queries. If you don't find what you're looking for, feel free to ask in our [GitHub Discussions](https://github.com/microsoft/WebEvoAI/discussions) or join our [Discord server](https://aka.ms/WebEvoAI-discord) for real-time support.
 
 ## Legal Notices
 
