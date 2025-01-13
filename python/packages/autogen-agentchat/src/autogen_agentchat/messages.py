@@ -8,6 +8,7 @@ from abc import ABC
 from typing import List, Literal
 
 from autogen_core import FunctionCall, Image
+from autogen_core.memory import MemoryContent
 from autogen_core.models import FunctionExecutionResult, RequestUsage
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
@@ -103,13 +104,22 @@ class ToolCallSummaryMessage(BaseChatMessage):
     type: Literal["ToolCallSummaryMessage"] = "ToolCallSummaryMessage"
 
 
+class MemoryQueryEvent(BaseAgentEvent):
+    """An event signaling the results of memory queries."""
+
+    content: List[MemoryContent]
+    """The memory query results."""
+
+    type: Literal["MemoryQueryEvent"] = "MemoryQueryEvent"
+
+
 ChatMessage = Annotated[
     TextMessage | MultiModalMessage | StopMessage | ToolCallSummaryMessage | HandoffMessage, Field(discriminator="type")
 ]
 """Messages for agent-to-agent communication only."""
 
 
-AgentEvent = Annotated[ToolCallRequestEvent | ToolCallExecutionEvent, Field(discriminator="type")]
+AgentEvent = Annotated[ToolCallRequestEvent | ToolCallExecutionEvent | MemoryQueryEvent, Field(discriminator="type")]
 """Events emitted by agents and teams when they work, not used for agent-to-agent communication."""
 
 
@@ -122,6 +132,7 @@ __all__ = [
     "ToolCallRequestEvent",
     "ToolCallExecutionEvent",
     "ToolCallSummaryMessage",
+    "MemoryQueryEvent",
     "ChatMessage",
     "AgentEvent",
 ]
