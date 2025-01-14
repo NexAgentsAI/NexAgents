@@ -3,7 +3,7 @@
 <div align="center">
 <img src="https://i.ibb.co/SfSjrdT/Capture-d-e-cran-2025-01-14-a-22-19-15.png" alt="AutoGen Logo" width="100">
 
-[![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%40WebEvoAI)](https://x.com/AgentsEvo)
+[![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%40EvoAgents)](https://x.com/AgentsEvo)
 [![Documentation](https://img.shields.io/badge/Documentation-EvoAgents-blue?logo=read-the-docs)](https://microsoft.github.io/EvoAgents/)
 
 </div>
