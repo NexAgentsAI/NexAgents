@@ -1,30 +1,30 @@
 <a name="readme-top"></a>
 
 <div align="center">
-<img src="https://i.ibb.co/2F9zWJh/Capture-d-e-cran-2025-01-18-a-01-13-41.png" alt="AutoGen Logo" width="100">
+<img src="https://i.ibb.co/6sc12cN/image.png" alt="AutoGen Logo" width="100">
 
-[![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%40AgentsOptima)](https://x.com/AgentsOptima)
-[![Documentation](https://img.shields.io/badge/Documentation-OptimaAgents-blue?logo=read-the-docs)](https://microsoft.github.io/OptimaAgents/)
+[![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%40NexAgents)](https://x.com/AgentsNex)
+[![Documentation](https://img.shields.io/badge/Documentation-NexAgents-blue?logo=read-the-docs)](https://microsoft.github.io/NexAgents/)
 
 </div>
 
-# OptimaAgents
+# NexAgents
 
-**OptimaAgents** is a framework for creating multi-agent AI applications that can act autonomously or work alongside humans.
+**NexAgents** is a framework for creating multi-agent AI applications that can act autonomously or work alongside humans.
 
 ## Installation
 
-OptimaAgents requires **Python 3.10 or later**.
+NexAgents requires **Python 3.10 or later**.
 
 ```bash
 # Install AgentChat and OpenAI client from Extensions
-pip install -U "OptimaAgents-agentchat" "OptimaAgents-ext[openai]"
+pip install -U "NexAgents-agentchat" "NexAgents-ext[openai]"
 ```
 
-The current stable version is v0.4. If you are upgrading from OptimaAgents v0.2, please refer to the [Migration Guide](https://microsoft.github.io/OptimaAgents/dev/user-guide/agentchat-user-guide/migration-guide.html) for detailed instructions on how to update your code and configurations.
+The current stable version is v0.4. If you are upgrading from NexAgents v0.2, please refer to the [Migration Guide](https://microsoft.github.io/NexAgents/dev/user-guide/agentchat-user-guide/migration-guide.html) for detailed instructions on how to update your code and configurations.
 
 ```bash
-# Install OptimaAgents Studio for no-code GUI
+# Install NexAgents Studio for no-code GUI
 pip install -U "autogenstudio"
 ```
 
@@ -52,7 +52,7 @@ Create a group chat team with an assistant agent, a web surfer agent, and a user
 for web browsing tasks. You need to install [playwright](https://playwright.dev/python/docs/library).
 
 ```python
-# pip install -U OptimaAgents-agentchat OptimaAgents-ext[openai,web-surfer]
+# pip install -U NexAgents-agentchat NexAgents-ext[openai,web-surfer]
 # playwright install
 import asyncio
 from autogen_agentchat.agents import AssistantAgent, UserProxyAgent
@@ -69,66 +69,66 @@ async def main() -> None:
     user_proxy = UserProxyAgent("user_proxy")
     termination = TextMentionTermination("exit") # Type 'exit' to end the conversation.
     team = RoundRobinGroupChat([web_surfer, assistant, user_proxy], termination_condition=termination)
-    await Console(team.run_stream(task="Find information about OptimaAgents and write a short summary."))
+    await Console(team.run_stream(task="Find information about NexAgents and write a short summary."))
 
 asyncio.run(main())
 ```
 
-### OptimaAgents Studio
+### NexAgents Studio
 
-Use OptimaAgents Studio to prototype and run multi-agent workflows without writing code.
+Use NexAgents Studio to prototype and run multi-agent workflows without writing code.
 
 ```bash
-# Run OptimaAgents Studio on http://localhost:8080
+# Run NexAgents Studio on http://localhost:8080
 autogenstudio ui --port 8080 --appdir ./my-app
 ```
 
-## Why Use OptimaAgents?
+## Why Use NexAgents?
 
 <div align="center">
-  <img src="OptimaAgents-landing.jpg" alt="OptimaAgents Landing" width="500">
+  <img src="NexAgents-landing.jpg" alt="NexAgents Landing" width="500">
 </div>
 
-The OptimaAgents ecosystem provides everything you need to create AI agents, especially multi-agent workflows -- framework, developer tools, and applications.
+The NexAgents ecosystem provides everything you need to create AI agents, especially multi-agent workflows -- framework, developer tools, and applications.
 
 The _framework_ uses a layered and extensible design. Layers have clearly divided responsibilities and build on top of layers below. This design enables you to use the framework at different levels of abstraction, from high-level APIs to low-level components.
 
-- [Core API](./python/packages/OptimaAgents-core/) implements message passing, event-driven agents, and local and distributed runtime for flexibility and power. It also support cross-language support for .NET and Python.
-- [AgentChat API](./python/packages/OptimaAgents-agentchat/) implements a simpler but opinionated API rapid for prototyping. This API is built on top of the Core API and is closest to what users of v0.2 are familiar with and supports familiar multi-agent patterns such as two-agent chat or group chats.
-- [Extensions API](./python/packages/OptimaAgents-ext/) enables first- and third-party extensions continuously expanding framework capabilities. It support specific implementation of LLM clients (e.g., OpenAI, AzureOpenAI), and capabilities such as code execution.
+- [Core API](./python/packages/NexAgents-core/) implements message passing, event-driven agents, and local and distributed runtime for flexibility and power. It also support cross-language support for .NET and Python.
+- [AgentChat API](./python/packages/NexAgents-agentchat/) implements a simpler but opinionated API rapid for prototyping. This API is built on top of the Core API and is closest to what users of v0.2 are familiar with and supports familiar multi-agent patterns such as two-agent chat or group chats.
+- [Extensions API](./python/packages/NexAgents-ext/) enables first- and third-party extensions continuously expanding framework capabilities. It support specific implementation of LLM clients (e.g., OpenAI, AzureOpenAI), and capabilities such as code execution.
 
 The ecosystem also supports two essential _developer tools_:
 
 <div align="center">
-  <img src="https://media.githubusercontent.com/media/microsoft/OptimaAgents/refs/heads/main/python/packages/OptimaAgents-studio/docs/ags_screen.png" alt="OptimaAgents Studio Screenshot" width="500">
+  <img src="https://media.githubusercontent.com/media/microsoft/NexAgents/refs/heads/main/python/packages/NexAgents-studio/docs/ags_screen.png" alt="NexAgents Studio Screenshot" width="500">
 </div>
 
-- [OptimaAgents Studio](./python/packages/OptimaAgents-studio/) provides a no-code GUI for building multi-agent applications.
-- [OptimaAgents Bench](./python/packages/agbench/) provides a benchmarking suite for evaluating agent performance.
+- [NexAgents Studio](./python/packages/NexAgents-studio/) provides a no-code GUI for building multi-agent applications.
+- [NexAgents Bench](./python/packages/agbench/) provides a benchmarking suite for evaluating agent performance.
 
-You can use the OptimaAgents framework and developer tools to create applications for your domain. For example, [Magentic-One](./python/packages/magentic-one-cli/) is a state-of-art multi-agent team built using AgentChat API and Extensions API that can handle variety of tasks that require web browsing, code execution, and file handling.
+You can use the NexAgents framework and developer tools to create applications for your domain. For example, [Magentic-One](./python/packages/magentic-one-cli/) is a state-of-art multi-agent team built using AgentChat API and Extensions API that can handle variety of tasks that require web browsing, code execution, and file handling.
 
-With OptimaAgents you get to join and contribute to a thriving ecosystem. We host weekly office hours and talks with maintainers and community. We also have a [Discord server](https://aka.ms/OptimaAgents-discord) for real-time chat, GitHub Discussions for Q&A, and a blog for tutorials and updates.
+With NexAgents you get to join and contribute to a thriving ecosystem. We host weekly office hours and talks with maintainers and community. We also have a [Discord server](https://aka.ms/NexAgents-discord) for real-time chat, GitHub Discussions for Q&A, and a blog for tutorials and updates.
 
 ## Where to go next?
 
 <div align="center">
 
-|               | [![Python](https://img.shields.io/badge/OptimaAgents-Python-blue?logo=python&logoColor=white)](./python)                                                                                                                                                                                                                                                                                                                | [![.NET](https://img.shields.io/badge/OptimaAgents-.NET-green?logo=.net&logoColor=white)](./dotnet) | [![Studio](https://img.shields.io/badge/OptimaAgents-Studio-purple?logo=visual-studio&logoColor=white)](./python/packages/OptimaAgents-studio)                     |
+|               | [![Python](https://img.shields.io/badge/NexAgents-Python-blue?logo=python&logoColor=white)](./python)                                                                                                                                                                                                                                                                                                                | [![.NET](https://img.shields.io/badge/NexAgents-.NET-green?logo=.net&logoColor=white)](./dotnet) | [![Studio](https://img.shields.io/badge/NexAgents-Studio-purple?logo=visual-studio&logoColor=white)](./python/packages/NexAgents-studio)                     |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Installation  | [![Installation](https://img.shields.io/badge/Install-blue)](https://microsoft.github.io/OptimaAgents/dev/user-guide/agentchat-user-guide/installation.html)                                                                                                                                                                                                                                                            | \*                                                                                             | [![Install](https://img.shields.io/badge/Install-purple)](https://microsoft.github.io/OptimaAgents/dev/user-guide/autogenstudio-user-guide/installation.html) |
-| Quickstart    | [![Quickstart](https://img.shields.io/badge/Quickstart-blue)](https://microsoft.github.io/OptimaAgents/dev/user-guide/agentchat-user-guide/quickstart.html#)                                                                                                                                                                                                                                                            | \*                                                                                             | [![Usage](https://img.shields.io/badge/Quickstart-blue)](https://microsoft.github.io/OptimaAgents/dev/user-guide/autogenstudio-user-guide/usage.html#)        |
-| Tutorial      | [![Tutorial](https://img.shields.io/badge/Tutorial-blue)](https://microsoft.github.io/OptimaAgents/dev/user-guide/agentchat-user-guide/tutorial/models.html)                                                                                                                                                                                                                                                            | \*                                                                                             | [![Usage](https://img.shields.io/badge/Quickstart-blue)](https://microsoft.github.io/OptimaAgents/dev/user-guide/autogenstudio-user-guide/usage.html#)        |
-| API Reference | [![API](https://img.shields.io/badge/Docs-blue)](https://microsoft.github.io/OptimaAgents/dev/reference/index.html#)                                                                                                                                                                                                                                                                                                    | \*                                                                                             | [![API](https://img.shields.io/badge/Docs-purple)](https://microsoft.github.io/OptimaAgents/dev/user-guide/autogenstudio-user-guide/usage.html)               |
-| Packages      | [![PyPi OptimaAgents-core](https://img.shields.io/badge/PyPi-OptimaAgents--core-blue?logo=pypi)](https://pypi.org/project/OptimaAgents-core/) <br> [![PyPi OptimaAgents-agentchat](https://img.shields.io/badge/PyPi-OptimaAgents--agentchat-blue?logo=pypi)](https://pypi.org/project/OptimaAgents-agentchat/) <br> [![PyPi OptimaAgents-ext](https://img.shields.io/badge/PyPi-OptimaAgents--ext-blue?logo=pypi)](https://pypi.org/project/OptimaAgents-ext/) | \*                                                                                             | [![PyPi autogenstudio](https://img.shields.io/badge/PyPi-autogenstudio-purple?logo=pypi)](https://pypi.org/project/autogenstudio/)                       |
+| Installation  | [![Installation](https://img.shields.io/badge/Install-blue)](https://microsoft.github.io/NexAgents/dev/user-guide/agentchat-user-guide/installation.html)                                                                                                                                                                                                                                                            | \*                                                                                             | [![Install](https://img.shields.io/badge/Install-purple)](https://microsoft.github.io/NexAgents/dev/user-guide/autogenstudio-user-guide/installation.html) |
+| Quickstart    | [![Quickstart](https://img.shields.io/badge/Quickstart-blue)](https://microsoft.github.io/NexAgents/dev/user-guide/agentchat-user-guide/quickstart.html#)                                                                                                                                                                                                                                                            | \*                                                                                             | [![Usage](https://img.shields.io/badge/Quickstart-blue)](https://microsoft.github.io/NexAgents/dev/user-guide/autogenstudio-user-guide/usage.html#)        |
+| Tutorial      | [![Tutorial](https://img.shields.io/badge/Tutorial-blue)](https://microsoft.github.io/NexAgents/dev/user-guide/agentchat-user-guide/tutorial/models.html)                                                                                                                                                                                                                                                            | \*                                                                                             | [![Usage](https://img.shields.io/badge/Quickstart-blue)](https://microsoft.github.io/NexAgents/dev/user-guide/autogenstudio-user-guide/usage.html#)        |
+| API Reference | [![API](https://img.shields.io/badge/Docs-blue)](https://microsoft.github.io/NexAgents/dev/reference/index.html#)                                                                                                                                                                                                                                                                                                    | \*                                                                                             | [![API](https://img.shields.io/badge/Docs-purple)](https://microsoft.github.io/NexAgents/dev/user-guide/autogenstudio-user-guide/usage.html)               |
+| Packages      | [![PyPi NexAgents-core](https://img.shields.io/badge/PyPi-NexAgents--core-blue?logo=pypi)](https://pypi.org/project/NexAgents-core/) <br> [![PyPi NexAgents-agentchat](https://img.shields.io/badge/PyPi-NexAgents--agentchat-blue?logo=pypi)](https://pypi.org/project/NexAgents-agentchat/) <br> [![PyPi NexAgents-ext](https://img.shields.io/badge/PyPi-NexAgents--ext-blue?logo=pypi)](https://pypi.org/project/NexAgents-ext/) | \*                                                                                             | [![PyPi autogenstudio](https://img.shields.io/badge/PyPi-autogenstudio-purple?logo=pypi)](https://pypi.org/project/autogenstudio/)                       |
 
 </div>
 
 \*_Releasing soon_
 
-Interested in contributing? See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on how to get started. We welcome contributions of all kinds, including bug fixes, new features, and documentation improvements. Join our community and help us make OptimaAgents better!
+Interested in contributing? See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on how to get started. We welcome contributions of all kinds, including bug fixes, new features, and documentation improvements. Join our community and help us make NexAgents better!
 
-Have questions? Check out our [Frequently Asked Questions (FAQ)](./FAQ.md) for answers to common queries. If you don't find what you're looking for, feel free to ask in our [GitHub Discussions](https://github.com/microsoft/OptimaAgents/discussions) or join our [Discord server](https://aka.ms/OptimaAgents-discord) for real-time support.
+Have questions? Check out our [Frequently Asked Questions (FAQ)](./FAQ.md) for answers to common queries. If you don't find what you're looking for, feel free to ask in our [GitHub Discussions](https://github.com/microsoft/NexAgents/discussions) or join our [Discord server](https://aka.ms/NexAgents-discord) for real-time support.
 
 ## Legal Notices
 
