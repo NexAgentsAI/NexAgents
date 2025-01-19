@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 
 <div align="center">
-<img src="" alt="AutoGen Logo" width="100">
+<img src="https://i.ibb.co/C1FQyp4/Capture-d-e-cran-2025-01-18-a-17-12-43.png" alt="AutoGen Logo" width="100">
 
 [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%40NexAgents)](https://x.com/AgentsNode)
 [![Documentation](https://img.shields.io/badge/Documentation-NodeAgents-blue?logo=read-the-docs)](https://microsoft.github.io/NodeAgents/)
